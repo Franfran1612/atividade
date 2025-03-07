@@ -3,12 +3,40 @@ class Ave:
                  tamanho_da_ave, falando=True, voando=False):
         self.nome = nome
         self.altura = altura
-        self.data_nascimento = data_nascimento
+        self._data_nascimento = data_nascimento
         self.cor_de_pena = cor_de_pena
-        self.tamanho_da_ave = tamanho_da_ave
-        self.falando = falando
+        self.__tamanho_da_ave = tamanho_da_ave
+        self._falando = falando
         self.voando = voando
+
         # /n é pra quebra linha
+
+    def get_data_nascimento(self):
+        return self._data_nascimento
+    def get_tamanho_da_ave(self):
+        return self.__tamanho_da_ave
+    def get_falando(self):
+        return self.__falando
+
+    def set_voar(self, status):
+        if self.voando and status:
+            print("Esta voando e continua voando")
+        elif self.voando and not status:
+            print("Esta voando e não esta parado")
+        elif not self.voando and status:
+            print("Não esta voando mais esta parado")
+        else:
+            print("Não esta voando mais vai começar a voar")
+            return self.voando
+
+    def set_falar(self, status):
+        if self._falando and status:
+            print("Esta falando ")
+        elif self._falando and not status:
+            print("esta falando e vai parar de falar")
+        else:
+            print(" Não esta falando ")
+            return self._falando
 
     def apresentar(self):
         print(f'Nome: {self.nome}\n'
@@ -16,20 +44,6 @@ class Ave:
               f'Data de nascimento: {self.data_nascimento}\n',
               f'Cor da pena: {self.cor_de_pena}\n',
               f'Tamanho da Ave: {self.tamanho_da_ave } \n')
-
-
-def falar(self):
-    if self.falando:
-        print("Essa ave consegue falar")
-    else:
-        print(" Não consigo  falar")
-
-
-def voar(self):
-    if self.voando:
-        print("Esta ave consegue voar")
-    else:
-        print("Não consigo voar")
 
 
 class Passaro(Ave):
@@ -43,17 +57,17 @@ class Passaro(Ave):
         self.caca = False
 
     def apresentar(self):
-        print(f'Nome: {self.nome}\n'
-              f' Altura: {self.altura}\n',
-              f'Data de nascimento: {self.data_nascimento}\n',
+        print(f'\n Nome: {self.nome}',
+              f' \n Altura: {self.altura}\n',
+              f'Data de nascimento: {self.get_data_nascimento()}\n',
               f'Cor da pena: {self.cor_de_pena}\n',
-              f'Tamanho da Ave: {self.tamanho_da_ave }\n')
+              f'Tamanho da Ave: {self.get_tamanho_da_ave() }\n')
 
     def cantar(self):
         if self.canta:
             print("Este passaro canta")
         else:
-            print(" Este não passaro canta")
+            print("Este não passaro canta")
 
     def espalhar(self):
         if self.espalha_sementes:
@@ -64,7 +78,6 @@ class Passaro(Ave):
     def cacar(self):
         if self.caca:
             print(f'Este passaro caça ')
-
         else:
             print("Este passaro não caça ")
 
@@ -75,7 +88,5 @@ a1.apresentar()
 a1.cacar()
 a1.espalhar()
 a1.cantar()
-
-
 
 print("-" * 20)
